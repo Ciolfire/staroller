@@ -1,3 +1,68 @@
 body {
-    background-color: skyblue;
+  background-color: black;
+}
+
+.hidden {
+  visibility: collapse;
+}
+
+.movie {
+  background: black;
+  display: flex;
+  height: 100%;
+  position: absolute;
+  align-items: center;
+}
+
+.animation {
+  height: 300px;
+}
+
+.text {
+  margin: 0;
+  font-family: starFont;
+  filter: drop-shadow(rgba(255, 255, 255, 1) 0px 0px 10px);
+  color: white;
+  text-align: right;
+  line-height: 20px;
+  font-size: 20px;
+  padding-top: 20px;
+  padding-right: 20px;
+}
+
+.icon {
+  fill: white;
+}
+
+#background {
+  z-index:-1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+h1 {
+  font-family: 'SF Distant Galaxy AltOutline';
+}
+
+@font-face {
+  font-family: 'EotE_Symbol-Regular';
+  src        : url('../fonts/EotE_Symbol-Regular_v1.otf');
+}
+
+@font-face {
+  font-family: 'SF Distant Galaxy AltOutline';
+  src        : url('../fonts/SF Distant Galaxy AltOutline.ttf');
+}
+
+@font-face {
+  font-family: 'SF Distant Galaxy';
+  src        : url('../fonts/SF Distant Galaxy.ttf');
+}
+
+@font-face {
+  font-family: 'Starjedi';
+  src        : url('../fonts/Starjedi.ttf');
 }

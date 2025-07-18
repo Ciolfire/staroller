@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RollerController!{% endblock %}
+
+{% block body %}
+  <div id="ui">
+    <div class="f-row">
+      <img style="transform: rotateY(180deg);" src="{{ asset(path = 'soldiers/rebeltrooper.png', packageName = 'roller') }}">
+      <h1>STAR ROLLER</h1>
+      <img src="{{ asset(path = 'soldiers/stormtrooper.png', packageName = 'roller') }}">
+    </div>
+    <div class="f-row f-grow f-center" style="flex-direction:column">
+      <router-link id="start-btn" to="/dicer" v-on:click.native="play('dicer-click')">Start</router-link>
+    </div>
+  </div>
+{% endblock %}
+
+{% block importmap %}
+  {{ importmap('app') }}
+  {{ importmap('roller') }}
+{% endblock %}

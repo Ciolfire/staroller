@@ -8,6 +8,11 @@ framework:
     #esi: true
     #fragments: true
 
+    assets:
+      packages:
+        roller:
+          base_path: /roller
+
 when@test:
     framework:
         test: true
