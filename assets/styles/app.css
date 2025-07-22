@@ -1,10 +1,116 @@
-body {
-  background-color: black;
+@import url("dice.css");
+@import url("fonts.css");
+@import url("icons.css");
+
+:root {
+  --main-color: #ffe81f;
+  --secondary-color: #4273ae;
+  --danger-color: darkred;
+  --main-back-color: black;
+  --off-color: #57381b;
+  /* --off-color: silver; */
 }
 
-.hidden {
-  visibility: collapse;
+body {
+  font-family: "StarJedi";
+  background-color: var(--main-back-color);
+  color: white;
 }
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+h1 {
+  color: var(--main-color);
+  font-family: "DistantGalaxyOutline";
+}
+
+h2, h3, h4, h5 {
+  font-family: "DistantGalaxy";
+}
+
+#start-btn {
+  width: 100%;
+  font-size:  4em;
+  font-weight: normal;
+  overflow: visible;
+  text-align: center;
+  font-family: "DistantGalaxyOutline";
+  color: var(--main-color);
+  text-decoration: none;
+  line-height: 50vh;
+  &:hover {
+    font-family: "DistantGalaxy";
+  }
+}
+
+#background {
+  z-index:-1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.btn {
+  outline: 2px solid #4273ae;
+  font-family: "DistantGalaxyOutline";
+  color: var(--secondary-color);
+  box-shadow: inset 0 0 25px var(--secondary-color);
+  font-size: xx-large;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  
+  &.btn-lg {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  &:hover {
+    font-family: "DistantGalaxy";
+    color: var(--main-color);
+    border: none;
+  }
+  &:active, &.btn-main:active {
+    transform: scale(0.95);
+    font-family: "DistantGalaxy";
+
+    outline: 2px solid var(--main-color);
+    box-shadow: inset 0 0 1.5em var(--main-color);
+  }
+
+  &.disabled {
+    color: silver!important;
+    outline-color: var(--off-color)!important;
+    box-shadow: inset 0 0 1.2em var(--off-color)!important;
+    font-family: "DistantGalaxy";
+  }
+
+  &.btn-add {
+    border-end-end-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &.btn-remove {
+    color: var(--danger-color);
+    border-start-start-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &.btn-main {
+    /* color: silver!important; */
+    outline-color: var(--main-color);
+    box-shadow: inset 0 0 0.5em var(--main-color);
+  }
+
+}
+
+
 
 .movie {
   background: black;
@@ -20,7 +126,7 @@ body {
 
 .text {
   margin: 0;
-  font-family: starFont;
+  /* font-family: "StarJedi"; */
   filter: drop-shadow(rgba(255, 255, 255, 1) 0px 0px 10px);
   color: white;
   text-align: right;
@@ -28,41 +134,4 @@ body {
   font-size: 20px;
   padding-top: 20px;
   padding-right: 20px;
-}
-
-.icon {
-  fill: white;
-}
-
-#background {
-  z-index:-1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-
-h1 {
-  font-family: 'SF Distant Galaxy AltOutline';
-}
-
-@font-face {
-  font-family: 'EotE_Symbol-Regular';
-  src        : url('../fonts/EotE_Symbol-Regular_v1.otf');
-}
-
-@font-face {
-  font-family: 'SF Distant Galaxy AltOutline';
-  src        : url('../fonts/SF Distant Galaxy AltOutline.ttf');
-}
-
-@font-face {
-  font-family: 'SF Distant Galaxy';
-  src        : url('../fonts/SF Distant Galaxy.ttf');
-}
-
-@font-face {
-  font-family: 'Starjedi';
-  src        : url('../fonts/Starjedi.ttf');
 }

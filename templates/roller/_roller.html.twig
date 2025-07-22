@@ -1,0 +1,66 @@
+<div id="roller" class="page collapse" data-ui-target="page">
+  <div class="row">
+    <div class="col">
+      <a class="btn btn-lg w-100" data-action="roller#reset sound#play" data-sound-file-param="{{ asset(path = 'sounds/ui/Delete2.mp3') }}">RESET</a>
+    </div>
+  </div>
+
+  <div class="row flex-grow-1 py-3">
+    <form name="pool" class="col">
+    {% for type, die in dice %}
+      <div class="row">
+        <div class="col">
+          <div class="row align-items-baseline align-content-center h-100">
+            <div class="col text-end">
+              <svg width="50" height="50" viewBox="0 0 100 100">
+                <polygon class="dice dice-{{ type }}" points="{{ die.points }}"/>
+              </svg>
+            </div>
+            <div class="col text-start">
+              <span id="{{ type }}" class="dice-number" data-roller-target="count" data-max="{{ die.max }}">
+                <label for="dice-{{ type }}"></label>
+                <input id="dice-{{ type }}" class="d-none" value="0" type="number" readonly>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="row g-1 py-2">
+            <div class="col">
+              <a class="btn btn-add {{ type }} w-100"
+                data-action="roller#update sound#play"
+                data-roller-type-param="{{ type }}"
+                data-roller-change-param="+1"
+                data-roller-max-param="{{ die.max }}"
+                data-sound-file-param="{{ asset(path = 'sounds/ui/Confirm.mp3') }}"
+              >+</a>
+            </div>
+            <div class="col">
+              <a class="btn btn-remove {{ type }} w-100"
+                data-action="roller#update sound#play"
+                data-roller-type-param="{{ type }}"
+                data-roller-change-param="-1"
+                data-roller-max-param="{{ die.max }}"
+                data-sound-file-param="{{ asset(path = 'sounds/ui/Confirm.mp3') }}"
+              >-</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <a class="btn btn-lg btn-main w-100 disabled"
+        data-action="roller#roll ui#switch sound#play"
+        data-roller-target="roll"
+        data-ui-target-param="animation"
+        {# data-ui-target-param="result" #}
+        data-sound-file-param="{{ asset(path = 'sounds/ui/Confirm2.mp3') }}"
+      >ROLL</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div id="result" class="page collapse" data-ui-target="page">
+  <div class="d-flex flex-column text-center justify-content-center user-select-none">
+    {# Basic #}
+    <h1 class="success" data-roller-target="success">{{ 'SUCCESS' }}</h1>
+    <h1 class="failure" data-roller-target="failure">{{ 'FAILURE' }}</h1>
+    <div>
+      <span class="star-symbol failure" data-roller-target="result" data-type="failure"></span>
+      <span class="star-symbol success" data-roller-target="result" data-type="success"></span>
+      <span class="star-symbol advantage" data-roller-target="result" data-type="advantage"></span>
+      <span class="star-symbol triumph" data-roller-target="result" data-type="triumph"></span>
+      <span class="star-symbol threat" data-roller-target="result" data-type="threat"></span>
+      <span class="star-symbol despair" data-roller-target="result" data-type="despair"></span>
+    </div>
+    {# Force #}
+    <h1 data-roller-target="force">{{ 'FORCE CHECK' }}</h1>
+    <div>
+      <span class="star-symbol light" data-roller-target="result" data-type="light"></span></span>
+      <span class="star-symbol dark" data-roller-target="result" data-type="dark"></span></span>
+    </div>
+  </div>
+  <div class="d-flex flex-column flex-grow-1 text-center user-select-none py-5">
+    {# Details #}
+    <h2>{{ 'DETAILS' }}</h2>
+    <span class=" flex-grow" data-roller-target="details"></span>
+  </div>
+    {# Reroll #}
+  <div class="d-flex pb-5">
+    <a class="btn w-100"
+      data-action="roller#roll ui#switch sound#play"
+      data-ui-target-param="roller"
+      data-sound-file-param="{{ asset(path = 'sounds/ui/Confirm.mp3') }}"
+    >
+      {{ "REROLL" }}
+    </a>
+  </div>
+</div>

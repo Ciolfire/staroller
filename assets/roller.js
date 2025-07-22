@@ -1,5 +1,6 @@
-import Background from "./Background.js";
+import "./app.js"
 
-console.log("loaded");
+import Background from "./Background.js";
+import Display from "./scripts/Display.js";
 
 Background.mounted();

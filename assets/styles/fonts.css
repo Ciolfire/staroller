@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "EotE_Symbol-Regular";
+  src        : url("../fonts/EotE_Symbol-Regular.otf");
+}
+
+@font-face {
+  font-family: "DistantGalaxy";
+  src        : url('../fonts/DistantGalaxy.ttf');
+}
+
+@font-face {
+  font-family: "DistantGalaxyOutline";
+  src        : url('../fonts/DistantGalaxyAltOutline.ttf');
+}
+
+@font-face {
+  font-family: "StarJedi";
+  src        : url('../fonts/Starjedi.ttf');
+}

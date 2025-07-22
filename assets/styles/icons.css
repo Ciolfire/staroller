@@ -1,0 +1,59 @@
+.icon {
+  fill: white;
+}
+
+.mirror {
+  transform: rotateY(180deg);
+}
+
+.success {
+	color: rgb(105,155,224);
+}
+
+.advantage {
+	color:rgb(33,84,163);
+}
+
+.triumph {
+	color:rgb(58,53,156);
+}
+
+.failure {
+	color:rgb(191,132,72);
+}
+
+.threat {
+	color: darkorange;
+}
+
+.despair {
+	color:darkred;
+}
+
+.good {
+	color: darkblue;
+}
+
+.bad {
+	color: darkred;
+}
+
+.light {
+	color: white;
+}
+
+.dark {
+  color:black;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}
+
+.star-symbol {
+  font-size: 2rem;
+  font-family: "EotE_Symbol-Regular";
+}
+
+.star-symbol-light {
+  color:white;
+  font-family: "EotE_Symbol-Regular";
+}

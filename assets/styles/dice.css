@@ -1,0 +1,59 @@
+svg {
+  filter: 
+  /* drop-shadow(0px 0px 5px var(--secondary-color))  */
+  /* drop-shadow(0px 0px 15px var(--secondary-color)) */
+  /* drop-shadow(0px 0px 50px var(--secondary-color)) */
+  ;
+
+  .dice {
+    stroke: var(--secondary-color);
+    stroke-opacity: 60%;
+    stroke-width: 0.4em;
+    stroke-linejoin: round;
+
+    &.dice-boost {
+      fill:#63899f;
+      stroke:#cfecf2;
+    }
+
+    &.dice-ability {
+      fill:#348634;
+      stroke: #89c679;
+    }
+
+    &.dice-proficiency {
+      fill:#c0b120;
+      stroke:#f8ef6f;
+    }
+
+
+    &.dice-setback {
+      fill:#171516;
+      stroke:#8b8b8b;
+    }
+    
+    &.dice-difficulty {
+      fill:#331751;
+      stroke:#8a77a5;
+    }
+
+    &.dice-challenge {
+      fill:#a80d22;
+      stroke:#f0727d;
+    }
+
+
+    &.dice-force {
+      fill:#c7c7c7;
+      stroke:#f4f4f4;
+    }
+  }
+
+}
+
+.dice-number {
+  font-family: "StarJedi";
+  font-size: large;
+  text-shadow: 0 0 0.5em var(--secondary-color);
+  filter: drop-shadow(0px 0px 5px var(--secondary-color)) drop-shadow(0px 0px 15px var(--secondary-color)) drop-shadow(0px 0px 100px var(--secondary-color));
+}
