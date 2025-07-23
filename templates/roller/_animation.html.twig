@@ -8,13 +8,15 @@
 
   <div class="ressources d-none">
     {% set soldiers = {
-      rebelEndor: { fire: "blaster_blue", x: 32, y: 17},
-      stormTrooper: { fire: "blaster_red", x: 32, y: 29}
+      rebelEndor: { fire: "blaster_blue", soundLaser: "blaster1.mp3", soundSoldier: "hit1", x: 32, y: 17},
+      stormTrooper: { fire: "blaster_red", soundLaser: "blaster2.mp3", soundSoldier: "hit2", x: 32, y: 29}
     } %}
     {% for soldier, data in soldiers %}
       <div id="{{ soldier }}" data-animation-target="soldier" data-name="{{ soldier }}"
         data-laser-effect="{{ asset(path = "images/effects/#{data['fire']}.png") }}"
         data-laser-x = {{ data['x']}} data-laser-y = {{ data['y']}}
+        data-laser-sound = {{ asset(path = "sounds/blaster/#{data['soundLaser']}") }}
+        data-soldier-sound = {{ asset(path = "sounds/hit/#{data['soundSoldier']}") }}
       >
         {% for frame in 1..4 %}
           <img class="{{ soldier }} idle {{ frame }}" src="{{ asset(path = "images/soldiers/#{soldier}/idle/#{frame}.png") }}" />

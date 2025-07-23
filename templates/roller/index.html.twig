@@ -4,7 +4,7 @@
 
 {% block body %}
   <div id="ui" class="container-fluid vh-100 p-3" data-controller="sound ui roller animation" 
-    data-action="roller:rolled->animation#prepare animation:done->ui#switch"
+    data-action="roller:rolled->animation#prepare animation:done->ui#switch animation:sound->sound#effect"
     data-ui-target-param="result"
     data-roller-dice-value="{{ dice|json_encode() }}"
     data-roller-symbols-value="{{ result|json_encode() }}"
