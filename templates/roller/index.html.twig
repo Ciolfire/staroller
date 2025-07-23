@@ -4,10 +4,11 @@
 
 {% block body %}
   <div id="ui" class="container-fluid vh-100 p-3" data-controller="sound ui roller animation" 
-    data-action="roller:rolled->animation#initialize"
+    data-action="roller:rolled->animation#prepare animation:done->ui#switch"
+    data-ui-target-param="result"
     data-roller-dice-value="{{ dice|json_encode() }}"
     data-roller-symbols-value="{{ result|json_encode() }}"
-    data-animation-background-file-value="{{ asset(path = 'images/background/endor.jpg') }}"
+    data-animation-background-value="{{ asset(path = 'images/background/endor.jpg') }}"
   >
     {# Home #}
     {% include "roller/_home.html.twig" %}

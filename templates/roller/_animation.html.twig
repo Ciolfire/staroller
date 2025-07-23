@@ -1,8 +1,28 @@
-<div id="animation" class="page" data-ui-target="page">
+<div id="animation" role="button" class="page collapse" data-ui-target="page" data-action="click->animation#stop click->ui#switch" data-ui-target-param="result">
   <div class="row">
     <div class="col text-center">
-      <canvas data-animation-target="canvas" class="animation" height="300" />
-      <a class="text" data-action="animation#stop ui#switch" data-ui-target-param="result"><img height="20" src="{{ asset(path = 'images/tap.svg') }}"> Skip!</a>
+      <canvas data-animation-target="canvas" class="animation" height="300"></canvas>
+      <div class="text text-end text-decoration-none" role="button"><img height="20" src="{{ asset(path = 'images/tap.svg') }}">Skip!</div>
     </div>
+  </div>
+
+  <div class="ressources d-none">
+    {% set soldiers = {
+      rebelEndor: { fire: "blaster_blue", x: 32, y: 17},
+      stormTrooper: { fire: "blaster_red", x: 32, y: 29}
+    } %}
+    {% for soldier, data in soldiers %}
+      <div id="{{ soldier }}" data-animation-target="soldier" data-name="{{ soldier }}"
+        data-laser-effect="{{ asset(path = "images/effects/#{data['fire']}.png") }}"
+        data-laser-x = {{ data['x']}} data-laser-y = {{ data['y']}}
+      >
+        {% for frame in 1..4 %}
+          <img class="{{ soldier }} idle {{ frame }}" src="{{ asset(path = "images/soldiers/#{soldier}/idle/#{frame}.png") }}" />
+        {% endfor %}
+        {% for frame in 1..4 %}
+          <img class="{{ soldier }} fire {{ frame }}" src="{{ asset(path = "images/soldiers/#{soldier}/fire/#{frame}.png") }}" />
+        {% endfor %}
+      </div>
+    {% endfor %}
   </div>
 </div>

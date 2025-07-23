@@ -130,7 +130,6 @@ final class RollerController extends AbstractController
       ],
     ];
 
-
     return $this->render('roller/index.html.twig', [
       'controller_name' => 'RollerController',
       'result' => $result,
