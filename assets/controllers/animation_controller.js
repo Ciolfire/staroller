@@ -11,29 +11,32 @@ export default class extends Controller {
   ];
 
   static values = {
-    background: String,
-    range: Number,
-    width: Number,
-    playerSoldier: String,
-    computerSoldier: String,
-    soldiers: Array,
+    background: String, // The background image path
+    range: Number, // The distance between soldiers
+    width: Number, // of the window
+    playerSoldier: String, // user sprite
+    computerSoldier: String, // ennemy sprite
+    soldiers: Array, // soldiers list, all of them
+    kills: Array, // killed soldiers list
     
-    start: Number,
-    ending: Number,
-    currentStepValue: Number,
-    last: Number,
-    isFired: Boolean
+    start: Number, // timestamp
+    ending: Number, // timestamp
+    currentStepValue: Number, // which step of the whole animation
+    last: Number, // reference to the last animation step
+    isFired: Boolean // true when the troops have fired
   }
 
   static context;
 
-  prepare(event) {
+  prepare({ detail: {content}}) {
     console.debug("start initialize");
 
     let width = window.innerWidth;
     let range = width/2;
     this.canvasTarget.width = width;
 
+    this.killsValue = content;
+    console.log(content);
 
     this.isFiredValue = false;
     this.startValue = 0;
@@ -76,7 +79,8 @@ export default class extends Controller {
     const elapsed = timestamp - this.startValue;
     if (this.endingValue == 0 && this.currentStepValue == 4) {
       console.debug("elapsed", elapsed);
-      this.endingValue = elapsed + 1500;
+      // The more informations to process, the longer the after animation screen
+      this.endingValue = elapsed + (this.killsValue.length * 400);
     }
 
     // Switch between frames
@@ -90,8 +94,23 @@ export default class extends Controller {
       console.info("switch to step "+this.currentStepValue);
     } else if (this.currentStepValue == 3 && this.soldiersValue[5].posX <= this.widthValue - this.soldiersValue[5].laserX - this.soldiersValue[5].shootX) {
       this.currentStepValue = 4;
-      // ref.play('hit1');
-      // ref.play('hit2');
+      
+      if ([0, 2, 4, 6, 8].some(item => {
+        if (this.killsValue.includes(item)) {
+          return true;
+        }
+      })) {
+        this.dispatch("sound", { detail: { file: this.soldiersValue[0].hitSound } });
+      }
+      if ([1, 3, 5, 7, 9].some(item => {
+        if (this.killsValue.includes(item)) {
+          return true;
+        }
+      })) {
+        this.dispatch("sound", { detail: { file: this.soldiersValue[0].hitSound } });
+      }
+
+
       console.info("switch to step "+this.currentStepValue);
     } else if (this.currentStepValue == 4 && elapsed > this.endingValue) {
       cancelAnimationFrame(this.lastValue);
@@ -150,13 +169,13 @@ export default class extends Controller {
           break;
         case 4:
           // Killed
-          // if (!kills.includes(index)) {
+          if (!this.killsValue.includes(Number.parseInt(index))) {
             context.drawImage(document.getElementById(soldier.id).getElementsByClassName(`idle ${frame}`)[0], soldier.posX, soldier.posY);
-            // } else {
-              // speed = this.kill(context, soldier._idle[1], soldier.posX, soldier.posY, speed);
-            // soldier.posX += speed;
-            // soldier.posY -= speed/speed*15;
-            // }
+          } else {
+            speed = this.kill(context, document.getElementById(soldier.id).getElementsByClassName(`idle ${frame}`)[0], soldier.posX, soldier.posY, speed);
+            soldier.posX += speed;
+            soldier.posY -= speed/speed*15;
+          }
           soldier.laserX = this.fire(context, soldier.laser, soldier.laserX, soldier.laserY, speed);
           break;
         default:
@@ -201,7 +220,7 @@ export default class extends Controller {
       laserY: parseInt(soldier.dataset.laserY) + posY,
       shootX: parseInt(soldier.dataset.laserX),
       laserSound: soldier.dataset.laserSound,
-      soldierSound: soldier.dataset.soldierSound
+      hitSound: soldier.dataset.hitSound
     };
   }
 

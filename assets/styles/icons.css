@@ -6,54 +6,75 @@
   transform: rotateY(180deg);
 }
 
-.success {
-	color: rgb(105,155,224);
-}
-
-.advantage {
-	color:rgb(33,84,163);
-}
-
-.triumph {
-	color:rgb(58,53,156);
-}
-
-.failure {
-	color:rgb(191,132,72);
-}
-
-.threat {
-	color: darkorange;
-}
-
-.despair {
-	color:darkred;
-}
-
-.good {
-	color: darkblue;
-}
-
-.bad {
-	color: darkred;
-}
-
-.light {
-	color: white;
-}
-
-.dark {
-  color:black;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: white;
-}
-
 .star-symbol {
   font-size: 2rem;
   font-family: "EotE_Symbol-Regular";
-}
 
-.star-symbol-light {
-  color:white;
-  font-family: "EotE_Symbol-Regular";
+  color: transparent;
+  -webkit-text-stroke-width: 0.1rem;
+
+  &.success {
+    color: transparent;
+    -webkit-text-stroke-color: var(--success-color);
+  }
+
+  &.advantage {
+    -webkit-text-stroke-color:rgb(33,84,163);
+  }
+
+  &.triumph {
+    color:black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(58,53,156);
+    /* color:rgb(58,53,156); */
+  }
+
+  &.failure {
+    color: transparent;
+    -webkit-text-stroke-color: var(--failure-color);
+  }
+
+  &.threat {
+    -webkit-text-stroke-color: darkorange;
+  }
+
+  &.despair {
+    -webkit-text-stroke-color:darkred;
+  }
+
+  &.light {
+    color: white;
+    -webkit-text-stroke-width: 0.08em;
+    -webkit-text-stroke-color: rgb(53, 53, 53);
+  }
+
+  &.dark {
+    color:black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+  }
+
+  &.small {
+    font-size: 0.6em;
+  }
+
+  &.clear {
+    -webkit-text-stroke-width: 0px;
+    -webkit-text-stroke-color: white;
+    color:white;
+    font-family: "EotE_Symbol-Regular";
+
+    &.triumph, &.despair {
+      color: black;
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: var(--main-color);
+    }
+    
+    &.light {
+      -webkit-text-stroke-width: 2px;
+      color: white;
+      -webkit-text-stroke-color: rgb(175, 175, 175);
+    }
+  }
+
 }

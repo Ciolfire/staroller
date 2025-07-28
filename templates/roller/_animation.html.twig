@@ -1,22 +1,22 @@
 <div id="animation" role="button" class="page collapse" data-ui-target="page" data-action="click->animation#stop click->ui#switch" data-ui-target-param="result">
-  <div class="row">
+  <div class="row h-100 align-content-center">
     <div class="col text-center">
-      <canvas data-animation-target="canvas" class="animation" height="300"></canvas>
+      <canvas id="animation" data-animation-target="canvas" class="animation" height="300"></canvas>
       <div class="text text-end text-decoration-none" role="button"><img height="20" src="{{ asset(path = 'images/tap.svg') }}">Skip!</div>
     </div>
   </div>
 
   <div class="ressources d-none">
     {% set soldiers = {
-      rebelEndor: { fire: "blaster_blue", soundLaser: "blaster1.mp3", soundSoldier: "hit1", x: 32, y: 17},
-      stormTrooper: { fire: "blaster_red", soundLaser: "blaster2.mp3", soundSoldier: "hit2", x: 32, y: 29}
+      rebelEndor: { fire: "blaster_blue.png", laserSound: "blaster1.mp3", hitSound: "hit1.mp3", x: 32, y: 17},
+      stormTrooper: { fire: "blaster_red.png", laserSound: "blaster2.mp3", hitSound: "hit2.mp3", x: 32, y: 29}
     } %}
     {% for soldier, data in soldiers %}
       <div id="{{ soldier }}" data-animation-target="soldier" data-name="{{ soldier }}"
-        data-laser-effect="{{ asset(path = "images/effects/#{data['fire']}.png") }}"
+        data-laser-effect="{{ asset(path = "images/effects/#{data['fire']}") }}"
         data-laser-x = {{ data['x']}} data-laser-y = {{ data['y']}}
-        data-laser-sound = {{ asset(path = "sounds/blaster/#{data['soundLaser']}") }}
-        data-soldier-sound = {{ asset(path = "sounds/hit/#{data['soundSoldier']}") }}
+        data-laser-sound = {{ asset(path = "sounds/blaster/#{data['laserSound']}") }}
+        data-hit-sound = {{ asset(path = "sounds/hit/#{data['hitSound']}") }}
       >
         {% for frame in 1..4 %}
           <img class="{{ soldier }} idle {{ frame }}" src="{{ asset(path = "images/soldiers/#{soldier}/idle/#{frame}.png") }}" />

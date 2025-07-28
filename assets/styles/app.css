@@ -1,3 +1,4 @@
+@import url("btn.css");
 @import url("dice.css");
 @import url("fonts.css");
 @import url("icons.css");
@@ -8,6 +9,8 @@
   --danger-color: darkred;
   --main-back-color: black;
   --off-color: #57381b;
+  --success-color: rgb(105,155,224);
+  --failure-color: rgb(191,132,72);
   /* --off-color: silver; */
 }
 
@@ -15,12 +18,6 @@ body {
   font-family: "StarJedi";
   background-color: var(--main-back-color);
   color: white;
-}
-
-.page {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 h1 {
@@ -32,21 +29,6 @@ h2, h3, h4, h5 {
   font-family: "DistantGalaxy";
 }
 
-#start-btn {
-  width: 100%;
-  font-size:  4em;
-  font-weight: normal;
-  overflow: visible;
-  text-align: center;
-  font-family: "DistantGalaxyOutline";
-  color: var(--main-color);
-  text-decoration: none;
-  line-height: 50vh;
-  &:hover {
-    font-family: "DistantGalaxy";
-  }
-}
-
 #background {
   z-index:-1;
   position: fixed;
@@ -56,61 +38,23 @@ h2, h3, h4, h5 {
   width: 100%;
 }
 
-.btn {
-  outline: 2px solid #4273ae;
-  font-family: "DistantGalaxyOutline";
-  color: var(--secondary-color);
-  box-shadow: inset 0 0 25px var(--secondary-color);
-  font-size: xx-large;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-  
-  &.btn-lg {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  &:hover {
-    font-family: "DistantGalaxy";
-    color: var(--main-color);
-    border: none;
-  }
-  &:active, &.btn-main:active {
-    transform: scale(0.95);
-    font-family: "DistantGalaxy";
-
-    outline: 2px solid var(--main-color);
-    box-shadow: inset 0 0 1.5em var(--main-color);
-  }
-
-  &.disabled {
-    color: silver!important;
-    outline-color: var(--off-color)!important;
-    box-shadow: inset 0 0 1.2em var(--off-color)!important;
-    font-family: "DistantGalaxy";
-  }
-
-  &.btn-add {
-    border-end-end-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  &.btn-remove {
-    color: var(--danger-color);
-    border-start-start-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  &.btn-main {
-    /* color: silver!important; */
-    outline-color: var(--main-color);
-    box-shadow: inset 0 0 0.5em var(--main-color);
-  }
-
+#animation {
+  margin: -1rem;
 }
 
+.success {
+  color: var(--success-color);
+}
 
+.failure {
+  color: var(--failure-color);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
 .movie {
   background: black;

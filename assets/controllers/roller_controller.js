@@ -6,24 +6,25 @@ import { Controller } from '@hotwired/stimulus';
 export default class extends Controller {
   static targets = [
     "count",
-    "roll",
-    "success",
+    "details",
     "failure",
     "force",
     "result",
-    "details"
+    "roll",
+    "success"
   ];
 
   static values = {
     dice: Object,
-    pool: Object,
-    result: Object,
+    symbols: Object,
     details: Array,
-    symbols: Object
+    pool: Object,
+    result: Object
   }
 
   connect() {
     this.detailsValue = [];
+    this.resultValue = {};
     this.countTargets.forEach(count => {
       let value = count.lastElementChild.value;
       let type = count.id;
@@ -48,6 +49,8 @@ export default class extends Controller {
   reset(event) {
     // Update values
     this.poolValue = {};
+    this.detailsValue = [];
+    this.resultValue = {};
     // Update form
     this.countTargets.forEach(count => {
       count.lastElementChild.value = 0;
@@ -140,19 +143,45 @@ export default class extends Controller {
 
     this.resultValue = result;
     this.detailsValue = details;
+    let kills = this.killSoldiers();
     // console.debug(this.resultValue, this.detailsValue);
 
     // We dispatch the event for the animation
-    this.dispatch("rolled", { detail: { type: 'attribute' } });
+    this.dispatch("rolled", { detail: { content: kills } });
     // And update the result page at the same time
     this.updateResult();
     // Finally update the details on the result page
     this.updateDetails();
   }
 
+  killSoldiers() {
+    let kills= [];
+    if (this.resultValue['success'] > 0) {
+        kills.push(1);
+        kills.push(3);
+        kills.push(5);
+      } else {
+        kills.push(0);
+        kills.push(2);
+        kills.push(4);
+      }
+      if (this.resultValue['advantage'] > 0) {
+        kills.push(7);
+      } else if (this.resultValue['advantage'] < 0) {
+        kills.push(6);
+      }
+      if (this.resultValue['triumph'] > 0) {
+        kills.push(9);
+      }
+      if (this.resultValue['despair'] > 0) {
+        kills.push(8);
+      }
+    return kills;
+  }
+
   updateResult() {
     this.resultTargets.forEach(element => {
-      element.classList.add("d-none");
+      element.innerHTML = null;
     });
     // Show the right title
     if (this.resultValue.success > 0) {
@@ -175,13 +204,17 @@ export default class extends Controller {
         value = -value;
       }
       let category = this.resultTargets.find((element) => element.dataset.type == type);
-      category.innerText = `${value}${this.symbolsValue[type]}`;
-      category.classList.remove("d-none");
+      if (value != 0) {
+        category.innerHTML = `<span class="fs-star-jedi pe-1">${value}</span>${this.symbolsValue[type]}`;
+      }
     }
   }
 
   updateDetails() {
-    let details = "";
+    for (const element of this.detailsTarget.children) {
+      element.innerHTML = null;
+    }
+    let details = [];
     for (const [type, face] of this.detailsValue) {
       let dice = `<span class="d-inline-block">`;
       let icon = `<svg width="50" height="50" viewBox="0 0 100 100">
@@ -190,22 +223,27 @@ export default class extends Controller {
       dice += icon;
       // For each face...
       for (let [type, value] of Object.entries(face)) {
-        let category = type;
         if (value < 0) {
-          type = this.inverseType();
+          type = this.inverseType(type);
           value = -value;
         }
         // ... display each symbol
         for (let index = 0; index < value; index++) {
-          let symbol = `<span class="star-symbol-light ${type}">${this.symbolsValue[category]}</span>`
+          let symbol = `<span class="star-symbol small clear ${type}" title="${type}">${this.symbolsValue[type]}</span>`
           dice += symbol;
         }
       }
       dice += `</span>`;
-      details += dice;
+      if (details[type] == undefined) {
+        details[type] = "";
+      }
+      details[type] += dice;
     }
 
-    this.detailsTarget.innerHTML = details;
+    for (const key in details) {
+      console.debug(details[key]);
+      document.getElementById(`details-${key}`).innerHTML = details[key];
+    }
   }
 
   isForceOnly() {

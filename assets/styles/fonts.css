@@ -1,3 +1,21 @@
+.fs-symbol {
+  font-family: 'EotE_Symbol-regular';
+}
+
+.fs-distant-galaxy {
+  font-family: "DistantGalaxy";
+  
+  &.outline {
+    font-family: "DistantGalaxyOutline";
+  }
+}
+
+.fs-star-jedi {
+  font-family: "StarJedi";
+}
+
+
+
 @font-face {
   font-family: "EotE_Symbol-Regular";
   src        : url("../fonts/EotE_Symbol-Regular.otf");
