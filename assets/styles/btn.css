@@ -1,9 +1,10 @@
 .btn {
-  outline: 2px solid #4273ae;
   font-family: "DistantGalaxyOutline";
+  font-size: 1.2rem;
+  line-height: 1.5;
+  outline: 2px solid #4273ae;
   color: var(--secondary-color);
   box-shadow: inset 0 0 25px var(--secondary-color);
-  font-size: xx-large;
   cursor: pointer;
   text-decoration: none;
   border: none;
@@ -34,11 +35,13 @@
   }
 
   &.btn-add {
+    font-size: 2rem;
     border-end-end-radius: 0;
     border-top-right-radius: 0;
   }
 
   &.btn-remove {
+    font-size: 2rem;
     color: var(--danger-color);
     border-start-start-radius: 0;
     border-bottom-left-radius: 0;
@@ -53,15 +56,16 @@
 }
 
 #start-btn {
+  display: block;
   width: 100%;
-  font-size:  4em;
+  font-size: 3rem;
+  text-align: center;
   font-weight: normal;
   overflow: visible;
   text-align: center;
   font-family: "DistantGalaxyOutline";
   color: var(--main-color);
   text-decoration: none;
-  line-height: 50vh;
   &:hover {
     font-family: "DistantGalaxy";
   }

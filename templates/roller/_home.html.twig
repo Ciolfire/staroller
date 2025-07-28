@@ -1,8 +1,14 @@
-<div id="home" class="page" data-ui-target="page">
-  <div class="d-flex w-100 justify-content-center user-select-none">
-    <img class="mirror" src="{{ asset(path = 'images/soldiers/rebeltrooper.png') }}">
-    <h1>STAR ROLLER</h1>
-    <img src="{{ asset(path = 'images/soldiers/stormtrooper.png') }}">
+<div id="home" class="p-3 h-100" data-ui-target="page">
+  <div class="d-flex flex-column h-100">
+    <div class="d-flex align-items-center user-select-none">
+      <img class="mirror" src="{{ asset(path = 'images/soldiers/rebeltrooper.png') }}">
+      <h1 class="col text-center">STAR ROLLER</h1>
+      <img src="{{ asset(path = 'images/soldiers/stormtrooper.png') }}">
+    </div>
+    <div class="flex-grow-1 align-content-center">
+      <a id="start-btn" role="button" class="w-100 flex-grow" data-action="ui#switch sound#play" data-ui-target-param="roller" data-sound-file-param="{{ asset(path = 'sounds/ui/Confirm.mp3') }}">
+        Start
+      </a>
+    </div>
   </div>
-  <a id="start-btn" role="button" class="d-block h-100 align-content-center" data-action="ui#switch sound#play" data-ui-target-param="roller" data-sound-file-param="{{ asset(path = 'sounds/ui/Confirm.mp3') }}">Start</a>
 </div>

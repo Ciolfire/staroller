@@ -14,8 +14,15 @@
   /* --off-color: silver; */
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   font-family: "StarJedi";
+  font-size: 1rem;
+  line-height: 1.5;
   background-color: var(--main-back-color);
   color: white;
 }
@@ -48,12 +55,6 @@ h2, h3, h4, h5 {
 
 .failure {
   color: var(--failure-color);
-}
-
-.page {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
 }
 
 .movie {

@@ -1,6 +1,5 @@
 import "./app.js"
 
-import Background from "./Background.js";
-import Display from "./scripts/Display.js";
+import background from "./background.js";
 
-Background.mounted();
+background.mounted();

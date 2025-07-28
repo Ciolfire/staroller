@@ -3,25 +3,25 @@
 {% block title %}Star Roller{% endblock %}
 
 {% block body %}
-  <div id="ui" class="container-fluid vh-100 p-3" data-controller="sound ui roller animation" 
-    data-action="roller:rolled->animation#prepare animation:done->ui#switch animation:sound->sound#effect"
-    data-ui-target-param="result"
-    data-roller-dice-value="{{ dice|json_encode() }}"
-    data-roller-symbols-value="{{ result|json_encode() }}"
-    data-animation-background-value="{{ asset(path = 'images/background/endor.jpg') }}"
-  >
-    {# Home #}
-    {% include "roller/_home.html.twig" %}
+<div id="ui" class="d-flex flex-column h-100" data-controller="sound ui roller animation" 
+  data-action="roller:rolled->animation#prepare animation:done->ui#switch animation:sound->sound#effect"
+  data-ui-target-param="result"
+  data-roller-dice-value="{{ dice|json_encode() }}"
+  data-roller-symbols-value="{{ result|json_encode() }}"
+  data-animation-background-value="{{ asset(path = 'images/background/endor.jpg') }}"
+>
+  {# Home #}
+  {% include "roller/_home.html.twig" %}
 
-    {# Roller #}
-    {% include "roller/_roller.html.twig" %}
+  {# Roller #}
+  {% include "roller/_roller.html.twig" %}
 
-    {# Animation #}
-    {% include "roller/_animation.html.twig" %}
+  {# Animation #}
+  {% include "roller/_animation.html.twig" %}
 
-    {# Result #}
-    {% include "roller/_result.html.twig" %}
-  </div>
+  {# Result #}
+  {% include "roller/_result.html.twig" %}
+</div>
 {% endblock %}
 
 {% block importmap %}
