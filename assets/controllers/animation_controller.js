@@ -51,9 +51,9 @@ export default class extends Controller {
     this.enemyArmyValue = "stormTrooper";
 
     const positions = [
-      [1.15, 225, true], //leader
       [1.3, 205, false],
       [1.5, 210, false],
+      [1.15, 225, true], //leader
       [1.4, 235, false],
       [1.6, 240, false],
     ];
@@ -65,11 +65,8 @@ export default class extends Controller {
     for (let index = 0; index < positions.length; index++) {
       const coord = positions[index];
       allies.push(this.recruitSoldier(coord[0], coord[1], 1, coord[2]));
-      // soldiers.push(this.recruitSoldier(coord[0], coord[1], 1, coord[2]));
       enemies.push(this.recruitSoldier(coord[0], coord[1], 2, coord[2]));
-      // soldiers.push(this.recruitSoldier(coord[0], coord[1], 2, coord[2]));
     }
-    // this.soldiersValue = soldiers;
     this.alliesValue = allies;
     this.enemiesValue = enemies;
 

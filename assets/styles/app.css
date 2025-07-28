@@ -45,10 +45,6 @@ h2, h3, h4, h5 {
   width: 100%;
 }
 
-#animation {
-  margin: -1rem;
-}
-
 .success {
   color: var(--success-color);
 }

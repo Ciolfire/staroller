@@ -155,12 +155,12 @@ export default class extends Controller {
       enemies: [],
     };
     if (this.resultValue['success'] > 0) {
+        kills.enemies.push(0);
         kills.enemies.push(1);
-        kills.enemies.push(2);
         kills.enemies.push(3);
       } else {
+        kills.allies.push(0);
         kills.allies.push(1);
-        kills.allies.push(2);
         kills.allies.push(3);
       }
       if (this.resultValue['advantage'] > 0) {
@@ -169,10 +169,10 @@ export default class extends Controller {
         kills.allies.push(4);
       }
       if (this.resultValue['triumph'] > 0) {
-        kills.enemies.push(0);
+        kills.enemies.push(2);
       }
       if (this.resultValue['despair'] > 0) {
-        kills.allies.push(0);
+        kills.allies.push(2);
       }
     return kills;
   }
