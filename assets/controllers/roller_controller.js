@@ -40,7 +40,6 @@ export default class extends Controller {
       }
     });
 
-    // console.debug(this.poolValue);
     if (Object.values(this.poolValue).reduce((a, b) => a +b, 0) > 0) {
       this.rollTarget.classList.remove('disabled');
     }
@@ -71,7 +70,7 @@ export default class extends Controller {
     let change = parseInt(event.params.change);
 
     this.countTargets.forEach(count => {
-      // We found the right total to update
+      // We find the right total to update
       if (count.id == event.params.type) {
         console.debug(count.id, event.params.type)
         let label = count.firstElementChild;
@@ -109,7 +108,6 @@ export default class extends Controller {
     let pool = this.poolValue;
     pool[type] = value;
     this.poolValue = pool;
-    // console.debug(this.poolValue);
   }
 
 
@@ -120,10 +118,8 @@ export default class extends Controller {
     }
     let details = [];
     
-    console.debug(this.poolValue);
     // Fetch the info for each dice type
     for (const [type, count] of Object.entries(this.poolValue)) {
-      // console.debug(type, this.diceValue);
       let faces = this.diceValue[type].faces;
       for (let index = 0; index < count; index++) {
         let roll = faces[1 + Math.floor(Math.random() * Object.keys(faces).length)];
@@ -144,7 +140,6 @@ export default class extends Controller {
     this.resultValue = result;
     this.detailsValue = details;
     let kills = this.killSoldiers();
-    // console.debug(this.resultValue, this.detailsValue);
 
     // We dispatch the event for the animation
     this.dispatch("rolled", { detail: { content: kills } });
@@ -155,26 +150,29 @@ export default class extends Controller {
   }
 
   killSoldiers() {
-    let kills= [];
+    let kills= {
+      allies: [],
+      enemies: [],
+    };
     if (this.resultValue['success'] > 0) {
-        kills.push(1);
-        kills.push(3);
-        kills.push(5);
+        kills.enemies.push(1);
+        kills.enemies.push(2);
+        kills.enemies.push(3);
       } else {
-        kills.push(0);
-        kills.push(2);
-        kills.push(4);
+        kills.allies.push(1);
+        kills.allies.push(2);
+        kills.allies.push(3);
       }
       if (this.resultValue['advantage'] > 0) {
-        kills.push(7);
+        kills.enemies.push(4);
       } else if (this.resultValue['advantage'] < 0) {
-        kills.push(6);
+        kills.allies.push(4);
       }
       if (this.resultValue['triumph'] > 0) {
-        kills.push(9);
+        kills.enemies.push(0);
       }
       if (this.resultValue['despair'] > 0) {
-        kills.push(8);
+        kills.allies.push(0);
       }
     return kills;
   }
@@ -241,7 +239,6 @@ export default class extends Controller {
     }
 
     for (const key in details) {
-      console.debug(details[key]);
       document.getElementById(`details-${key}`).innerHTML = details[key];
     }
   }
