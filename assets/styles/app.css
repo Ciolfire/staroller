@@ -12,6 +12,8 @@
   --success-color: rgb(105,155,224);
   --failure-color: rgb(191,132,72);
   /* --off-color: silver; */
+
+  touch-action: pan-x pan-y;
 }
 
 html, body {
