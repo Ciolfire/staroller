@@ -12,19 +12,11 @@ import './styles/app.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 
-document.addEventListener("gesturestart", function (e) {
-	e.preventDefault();
-
-  document.body.style.zoom = 0.99;
-});
-
-document.addEventListener("gesturechange", function (e) {
-	e.preventDefault();
-
-  document.body.style.zoom = 0.99;
-});
-document.addEventListener("gestureend", function (e) {
-  e.preventDefault();
-
-  document.body.style.zoom = 1;
-});
+let last_touch_end = 0;
+document.addEventListener("touchend", function (e) {
+  const now = (new Date()).getTime();
+  if (now - last_touch_end <= 300) {
+      e.preventDefault();
+  }
+  last_touch_end = now;
+}, false);
